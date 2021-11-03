@@ -1,0 +1,78 @@
+﻿<link href="~/Content/Login.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<html>
+<body>
+    
+
+    <div class="body">
+
+        <div class="veen">
+            <div class="rgstr-btn splits">
+                <img style="margin-left:510px" class="img-fluid" alt="Öğrenci İşleri bilgi sistemi" src="~/Images/Duzce_Universitesi-removebg-preview.png" />
+            </div>
+
+            <div class="wrapper">
+                @if (TempData["mesajgiris"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible" id="myAlert">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        @TempData["mesajgiris"]
+                    </div>
+                }
+                @using (Html.BeginForm("Giris", "Login", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <h3>Öğrenci İşleri Bilgi Sistemi</h3>
+                    <h3>Giriş</h3>
+                    <div class="mail">
+                        <input type="text" name="kullaniciad" >
+                        <label for="username">Kullanıcı Ad</label>
+                    </div>
+                    <div class="passwd">
+                        <input type="password" name="parola">
+                        <label for="password">Şifre</label>
+                    </div>
+                    <div class="submit">
+                        <button class="dark">Giriş Yap</button>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<style type="text/css">
+    .site-link {
+        padding: 5px 15px;
+        position: fixed;
+        z-index: 99999;
+        background: #fff;
+        box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+        right: 30px;
+        bottom: 30px;
+        border-radius: 10px;
+    }
+
+        .site-link img {
+            width: 30px;
+            height: 30px;
+        }
+</style>
+<script src="~/Scripts/Login.js"></script>
+<link href="~/Content/bootstrap-grid.css" rel="stylesheet" />
+<script src="~/Scripts/bootbox.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/bootbox.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $(".close").click(function () {
+            $("#myAlert").alert("close");
+        });
+    });
+</script>

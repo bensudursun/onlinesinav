@@ -1,0 +1,15 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE HTML>
+<html>
+<body>
+    @Html.Partial("_Header")
+    
+    <div class="container">
+        @RenderBody()
+    </div>
+    @RenderSection("scripts", false)
+
+</body>
+</html>

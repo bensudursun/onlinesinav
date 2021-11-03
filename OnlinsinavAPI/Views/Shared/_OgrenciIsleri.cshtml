@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "_OgrenciIsleri";
+    Layout = null;
+}
+
+<head>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-grid.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <style>
+
+
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 40px;
+            right: 30px;
+            z-index: 100;
+            width: 50px;
+            height: 50px;
+            opacity: 0.3;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #22b9ff;
+            color: #ffffff;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 1.3rem;
+        }
+
+            #myBtn:hover {
+                opacity:0.5;
+                background-color: #22b9ff;
+            }
+    </style>
+</head>
+
+
+<nav class="navbar navbar-expand-lg navbar-light " style=" background:linear-gradient(45deg, #83a4d4, #b6fbff)">
+    <img style="width:40px; margin-right:10px;" class="img-fluid" alt="Online Sınav Sistemi" src="~/Images/Duzce_Universitesi-removebg-preview.png" />
+
+    <a class="navbar-brand" href="/OgrenciIsleri/OgrenciIsleri">Öğrenci İşleri Bilgi Sistemi</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                @Html.ActionLink("Anasayfa", "OgrenciIsleri", "OgrenciIsleri", new { @class = "nav-link" })
+            </li>
+            <li class="nav-item active">
+
+                @Html.ActionLink("Eğitmen Listesi", "Egitmenler", "OgrenciIsleri", new { @class = "nav-link" })
+            </li>
+            <li class="nav-item active">
+                @Html.ActionLink("Öğrenci Listesi", "Ogrenciler", "OgrenciIsleri", new { @class = "nav-link" })
+            </li>
+            <li class="nav-item active">
+                @Html.ActionLink("Kullanıcı Listesi", "Kullanicilar", "OgrenciIsleri", new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Yardım</a>
+            </li>
+        </ul>
+        <ul>
+            <li class="nav-item active" style="list-style:none">
+                @if (Session["kullaniciad"] != null)
+                {
+
+                    <i class="fa fa-user-o" style="font-size:20px"></i>
+
+                    @Session["kullaniciad"].ToString()
+
+
+                }
+
+            </li>
+        </ul>
+        <ul>
+            <li style="list-style:none">
+                <button class="btn " onclick="window.location.href='/Login/Cikis'">
+
+                    Çıkış yap
+
+                </button>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"> </i></button>
+
+
+
+<main role="main" class="container" style="padding-top: 50px;">
+
+    @RenderBody()
+</main>
+
+@RenderSection("scripts", false)
+
+@Html.Partial("_Footer")
+<script>
+    //Get the button
+    var mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>

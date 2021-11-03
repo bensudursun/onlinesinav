@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "OgrenciIsleriEgitmenEkle";
+    Layout = "~/Views/Shared/_OgrenciIsleri.cshtml";
+}
+@model OnlinsinavAPI.ViewModel
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-grid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("EgitmenKaydet", "OgrenciIsleri", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    @Html.Label("Egitmen Ad")
+                    @Html.TextBoxFor(m => m.tblEgitmen.egitmenad, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Egitmen Soyad")
+                    @Html.TextBoxFor(m => m.tblEgitmen.egitmensoyad, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Egitmen Eposta")
+                    @Html.TextBoxFor(m => m.tblEgitmen.egitmeneposta, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Eğitmen Fakülte</label>
+                    <select class="form-control" name="fakulteler" id="fakulte">
+                        <option>Fakülte seçiniz</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Eğitmen Bölüm</label>
+                    <select class="form-control" name="bolumler" id="bolum" disabled>
+                        <option>Bölüm seçiniz</option>
+                    </select>
+                </div>
+                @Html.HiddenFor(m => m.tblEgitmen.egitmenid)
+                @Html.HiddenFor(m => m.tblEgitmen.fakulteid)
+                @Html.HiddenFor(m => m.tblEgitmen.bolumid)
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        //aynı ajaxmı kullanıcağımdan dolayı ajaxsetup oluştuyorum
+        $.ajaxSetup({
+            type: "post",
+            url: "/OgrenciIsleri/FakulteBolum",//controlerımda gidicek olan yerim
+            dataType: "json"
+        });
+        $.extend({
+            fakulteGetir: function () {
+                $.ajax({
+                    //datamızı gönderiyoruz
+                    data: { "tip": "fakulteGetir" },
+                    success: function (sonuc) {
+                        //gelen sonucumuz kontrol ediyoruz ona göre selectimze append işlemi gerçekleştiyoruz
+                        if (sonuc.ok) {
+
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#fakulte").append(optionhtml);
+
+                            });
+
+                        } else {
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#fakulte").append(optionhtml);
+
+                            });
+
+                        }
+
+                    }
+                });
+            },
+            bolumGetir: function (fakulteid) {
+
+                $.ajax({
+                    //ekstra olarak functionumaza gelen ilID mizi gönderiyoruz
+                    data: { "fakulteid": fakulteid, "tip": "bolumGetir" },
+                    success: function (sonuc) {
+                        //bir önceki kayıtları temizliyorum
+                        $("#bolum option").remove();
+                        if (sonuc.ok) {
+                            //disabled true yapıyorum
+                            $("#bolum").prop("disabled", false);
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#bolum").append(optionhtml);
+                            });
+
+                        } else {
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#bolum").append(optionhtml);
+
+                            });
+                        }
+                    }
+                });
+            }
+        });
+        //ilgetirimizi çalıştıyoruz
+        $.fakulteGetir();
+        //il selectimizde değişiklik olduğunda çalışacak func
+        $("#fakulte").on("change", function () {
+            //seçili olan id alıyoruz
+            var fakulteid = $(this).val();
+            //seçili olan idmizi ilceGetir'imze gönderiyoruz
+
+            $.bolumGetir(fakulteid);
+
+        });
+    });
+</script>

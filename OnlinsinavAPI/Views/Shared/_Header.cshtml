@@ -1,0 +1,47 @@
+﻿@model List<tblOgrenci>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-grid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color:#d5dbeb">
+
+    <a class="navbar-brand" href="#">ÖğrenciİşleriBilgiSistemi</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Ana Sayfa<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Yardım</a>
+            </li>
+
+        </ul>
+        <ul>
+
+            <li>
+                <span id="spanusername" class="text-muted"></span>
+            </li>
+
+        </ul>
+
+
+    </div>
+</nav>
+
+<script>
+    $(document).ready(function () {
+        $('#spanusername').text('hello' + localStorage.getItem('userName'))
+        if (localStorage.getItem('accessToken') == null) {
+            window.location.href="Login/Giris"
+        }
+    });
+   
+</script>

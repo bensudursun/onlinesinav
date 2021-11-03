@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "EgitmenDersEkle";
+    Layout = "~/Views/Shared/_OgrenciIsleri.cshtml";
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-grid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Html.BeginForm("EgitmenDersKaydet", "OgrenciIsleri", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Öğrenci</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="selectegitmen">
+                        @foreach (var item in Model.tblEgitmens)
+                        {
+                            <option value="@item.egitmenid">@item.egitmenad</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Ders</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="selectders">
+                        <option>Lütfen ders seçiniz</option>
+                        @foreach (var item in Model.tblDerss)
+                        {
+                            <option name="ders" value="@item.dersid">@item.dersad</option>
+                        }
+                    </select>
+                </div>
+                <button class="btn btn-success" type="submit"> Ders Kaydet</button>
+            }
+
+        </div>
+    </div>
+</div>
+<script>
+
+</script>

@@ -1,0 +1,134 @@
+﻿@model ViewModel
+@{
+    ViewBag.Title = "Egitmenler";
+    Layout = "~/Views/Shared/_OgrenciIsleri.cshtml";
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/buttons.dataTables.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-grid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+@if (TempData["mesaj"] != null)
+{
+    <div class="alert alert-danger alert-dismissible" id="myAlert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        @TempData["mesaj"]
+    </div>
+}
+@if (TempData["mesajegitmen"] != null)
+{
+    <div class="alert alert-danger alert-dismissible" id="myAlert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        @TempData["mesajegitmen"]
+    </div>
+}
+<h2>Eğitmen Listesi</h2>
+<div class="container" style="padding-bottom:40px; padding-top:40px;">
+    @Html.ActionLink("Eğitmen Ekle", "OgrenciIsleriEgitmenEkle", "OgrenciIsleri", new { @class = "btn btn-success" })
+</div>
+
+<table class="table table-bordered table table-hover" id="tablo">
+    <thead>
+        <tr>
+            <th>Eğitmen Ad</th>
+            <th>Eğitmen Soyad</th>
+            <th>Eğitmen Eposta</th>
+            <th>Eğitmen Fakülte</th>
+            <th>Eğitmen Bölüm</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var o in Model.tblEgitmens)
+        {
+            <tr>
+                <td>@o.egitmenad</td>
+                <td>@o.egitmensoyad</td>
+                <td>@o.egitmeneposta</td>
+                <td>@o.tblFakulte.fakultead</td>
+                <td>@o.tblBolum.bolumad</td>
+                <td>
+                    @Html.ActionLink("Ders Listesi", "DersListeEgitmen", "OgrenciIsleri", new { id = o.egitmenid }, new { @class = "btn btn-success" })
+                </td>
+                <td>
+                    @Html.ActionLink("Ders Ekle", "EgitmenDersEkle", "OgrenciIsleri", new { id = o.tblDers.bolumid, id2 = o.egitmenid }, new { @class = "btn btn-success" })
+                </td>
+            
+                <td>
+                    <a class="btn btn-warning btnEgitmenSil" style="width:60px; height:45px; text-align:center; color:white " data-id="@o.egitmenid">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap4.min.js"></script>
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootbox.js"></script>
+<script src="~/Scripts/bootbox.min.js"></script>
+<script>
+    $(function () {
+        $('#tablo').DataTable({
+            language: {
+                info: "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+                infoEmpty: "Hiç kayıt bulunamadı.",
+                loadingRecords: "Kayıtlar yükleniyor.",
+                zeroRecords: "Eşleşen bir kayıt bulunamadı.",
+                search: "Ara:",
+                infoFiltered: "(toplam _MAX_ kayıttan filtrelenenler)",
+                lengthMenu: "Sayfada _MENU_ kayıt göster",
+                buttons: {
+                    copyTitle: "Panoya kopyalandı.",
+                    copySuccess: "Panoya %d satır kopyalandı",
+                    copy: "Kopyala",
+                    print: "Yazdır",
+                },
+
+                paginate: {
+                    first: "İlk",
+                    previous: "Önceki",
+                    next: "Sonraki",
+                    last: "Son"
+                },
+            }
+        });
+
+    });
+    $(function () {
+        $('#tablo').on("click", ".btnEgitmenSil", function () {
+            var btn = $(this);
+            bootbox.confirm("Silmek istediğinize emin misiniz?", function (result) {
+                if (result) {
+                    var id = btn.data("id");
+                    $.ajax({
+                        type: "GET",
+                        url: "/OgrenciIsleri/EgitmenSil/" + id,
+                        success: function () {
+                            btn.parent().parent().remove();
+                        }
+                    }).fail(function () {
+                        bootbox.alert('Silmek istediğiniz eğitmenin ders kaydı bulunmaktadır.');
+
+                    });
+                }
+            })
+
+        });
+    });
+    $(document).ready(function () {
+        $(".close").click(function () {
+            $("#myAlert").alert("close");
+        });
+    });
+
+</script>

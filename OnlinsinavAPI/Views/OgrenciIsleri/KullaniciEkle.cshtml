@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "KullaniciEkle";
+    Layout = "~/Views/Shared/_OgrenciIsleri.cshtml";
+}
+@model ViewModel
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-grid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.slim.js"></script>
+<script src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.bundle.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+<script src="~/Scripts/chosen.jquery.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("KullaniciKaydet", "OgrenciIsleri", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Kullanıcı Ad</label>
+                    <input type="text" name="Ad" class="form-control" id="exampleFormControlInput1" placeholder="Ad">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Kullanıcı Şifre</label>
+                    <input type="text" name="Sifre" class="form-control" id="exampleFormControlInput1" placeholder="Şifre">
+                </div>
+                <div class="form-group">
+                    <label>Yetki Türü</label>
+                    <select class="form-control" name="yetkitur" id="yetkitur">
+                        <option>seçiniz</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Yetkilendirilecek kullanıcı</label>
+                    <select class="form-control" name="kisiler" id="kim" disabled>
+                        <option> seçiniz</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            }
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+   
+    $(function () {
+       
+        //aynı ajaxmı kullanıcağımdan dolayı ajaxsetup oluştuyorum
+        $.ajaxSetup({
+            type: "post",
+            url: "/OgrenciIsleri/YetkiKisi",//controlerımda gidicek olan yerim
+            dataType: "json"
+        });
+        $.extend({
+            yetkiTurGetir: function () {
+                $.ajax({
+                    //datamızı gönderiyoruz
+                    data: { "tip": "yetkiTurGetir" },
+                    success: function (sonuc) {
+                        //gelen sonucumuz kontrol ediyoruz ona göre selectimze append işlemi gerçekleştiyoruz
+                        if (sonuc.ok) {
+
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#yetkitur").append(optionhtml);
+
+                            });
+
+                        } else {
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#yetkitur").append(optionhtml);
+
+                            });
+
+                        }
+                        $("#yetkitur").chosen();
+                    }
+                });
+            },
+            KisiGetir: function (yetkiturid) {
+
+                $.ajax({
+                    //ekstra olarak functionumaza gelen ilID mizi gönderiyoruz
+                    data: { "yetkiturid": yetkiturid, "tip": "KisiGetir" },
+                    success: function (sonuc) {
+                        //bir önceki kayıtları temizliyorum
+                        $("#kim option").remove();
+                        if (sonuc.ok) {
+                            //disabled true yapıyorum
+                            $("#kim").prop("disabled", false);
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#kim").append(optionhtml);
+                            
+                            });
+
+                        } else {
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#kim").append(optionhtml);
+
+                            });
+                        }
+                        $("#kim").chosen();
+                    }
+                });
+            }
+        });
+        //ilgetirimizi çalıştıyoruz
+        $.yetkiTurGetir();
+        //il selectimizde değişiklik olduğunda çalışacak func
+        $("#yetkitur").on("change", function () {
+            //seçili olan id alıyoruz
+            var yetkiturid = $(this).val();
+            //seçili olan idmizi ilceGetir'imze gönderiyoruz
+
+            $.KisiGetir(yetkiturid);
+
+        });
+    });
+    
+</script>

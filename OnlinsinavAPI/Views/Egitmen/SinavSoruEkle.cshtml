@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "SinavSoruSec";
+    Layout = "~/Views/Shared/_Egitmen.cshtml";
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-grid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+<script src="~/Scripts/chosen.jquery.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Html.BeginForm("SinavSoruKaydet", "Egitmen", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Sinav</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="selectsinav">
+                        @foreach (var item in Model.tblSinavs)
+                        {
+                            <option value="@item.sinavid">@item.sinavad</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Soru</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="selectsoru">
+                        @foreach (var item in Model.tblSorus)
+                        {
+                            <option value="@item.soruid">@item.soru</option>
+                        }
+                    </select>
+                </div>
+
+                <button class="btn btn-success" type="submit">Soru Kaydet</button>
+            }
+
+        </div>
+    </div>
+</div>
+<script>
+
+    $(function () {
+
+        //aynı ajaxmı kullanıcağımdan dolayı ajaxsetup oluştuyorum
+        $.ajaxSetup({
+            type: "post",
+            url: "/Egitmen/SoruSecenek",//controlerımda gidicek olan yerim
+            dataType: "json"
+        });
+        $.extend({
+            soruGetir: function () {
+                $.ajax({
+                    //datamızı gönderiyoruz
+                    data: { "tip": "soruGetir" },
+                    success: function (sonuc) {
+                        //gelen sonucumuz kontrol ediyoruz ona göre selectimze append işlemi gerçekleştiyoruz
+                        if (sonuc.ok) {
+
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#soru").append(optionhtml);
+
+                            });
+
+                        } else {
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#soru").append(optionhtml);
+
+                            });
+
+                        }
+                        $("#soru").chosen();
+                    }
+                });
+            },
+            secenekGetir: function (soruid) {
+
+                $.ajax({
+                    //ekstra olarak functionumaza gelen ilID mizi gönderiyoruz
+                    data: { "soruid": soruid, "tip": "secenekGetir" },
+                    success: function (sonuc) {
+                        //bir önceki kayıtları temizliyorum
+                        $("#secenekler option").remove();
+                        if (sonuc.ok) {
+                            //disabled true yapıyorum
+                            $("#secenekler").prop("disabled", false);
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#secenekler").append(optionhtml);
+
+                            });
+
+                        } else {
+                            $.each(sonuc.text, function (index, item) {
+                                var optionhtml = '<option value="' + item.Value + '">' + item.Text + '</option>';
+                                $("#secenekler").append(optionhtml);
+
+                            });
+                        }
+                        $("#secenekler").chosen({
+                            disable_search_treshold:true
+                        });
+                    }
+                });
+            }
+        });
+        //ilgetirimizi çalıştıyoruz
+        $.soruGetir();
+        //il selectimizde değişiklik olduğunda çalışacak func
+        $("#soru").on("change", function () {
+            //seçili olan id alıyoruz
+            var soruid = $(this).val();
+            //seçili olan idmizi ilceGetir'imze gönderiyoruz
+
+            $.secenekGetir(soruid);
+
+        });
+    });
+
+</script>
+
+

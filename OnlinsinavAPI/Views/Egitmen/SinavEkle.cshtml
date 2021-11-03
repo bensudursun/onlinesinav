@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "SinavEkle";
+    Layout = "~/Views/Shared/_Egitmen.cshtml";
+}
+
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-grid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Html.BeginForm("SinavKaydet", "Egitmen", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Egitmen</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="selectegitmen">
+                        @foreach (var item in Model.tblEgitmens)
+                        {
+                            <option value="@item.egitmenid">@item.egitmenad @item.egitmensoyad</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Ders</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="selectders">
+
+                        @foreach (var item in Model.tblDerss)
+                        {
+                            <option name="ders" value="@item.dersid" data-id="@item.dersid">@item.dersad</option>
+
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Sınav Ad</label>
+                    <input type="text" name="sinavad" class="form-control" id="exampleFormControlInput1" placeholder="Ad">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Sınav Tarihi</label>
+                    <input class="datefield" data-val="true" data-val-required="Date is required"
+                           id="ReleaseDate" name="tarih" type="datetime-local" value="1/11/2021" />
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Sınav Bitiş Tarihi</label>
+                    <input class="datefield" data-val="true" data-val-required="Date is required"
+                           id="ReleaseDate" name="tarihbitis" type="datetime-local" value="1/11/2021" />
+
+                </div>
+                <button class="btn btn-success" id="dersekle" type="submit"> Sınav Kaydet</button>
+            }
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/bootbox.js"></script>
+<script src="~/Scripts/bootbox.min.js"></script>
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap4.min.js"></script>
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script>
+
+</script>

@@ -1,0 +1,1801 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OnlinesinavdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblBolum">
+          <Key>
+            <PropertyRef Name="bolumid" />
+          </Key>
+          <Property Name="bolumid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bolumad" Type="varchar" MaxLength="50" />
+          <Property Name="fakulteid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblBolumEgitmen">
+          <Key>
+            <PropertyRef Name="bolumEgitmenid" />
+          </Key>
+          <Property Name="bolumEgitmenid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bolumid" Type="int" />
+          <Property Name="egitmenid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblDers">
+          <Key>
+            <PropertyRef Name="dersid" />
+          </Key>
+          <Property Name="dersid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dersad" Type="varchar" MaxLength="50" />
+          <Property Name="derskod" Type="varchar" MaxLength="10" />
+          <Property Name="derssaat" Type="int" />
+          <Property Name="derskredi" Type="int" />
+          <Property Name="dersdonem" Type="int" />
+          <Property Name="dersakts" Type="int" />
+          <Property Name="bolumid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblEgitmen">
+          <Key>
+            <PropertyRef Name="egitmenid" />
+          </Key>
+          <Property Name="egitmenid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="egitmenad" Type="varchar" MaxLength="10" />
+          <Property Name="egitmensoyad" Type="varchar" MaxLength="50" />
+          <Property Name="egitmeneposta" Type="varchar" MaxLength="50" />
+          <Property Name="bolumid" Type="int" />
+          <Property Name="yetkiturid" Type="int" />
+          <Property Name="fakulteid" Type="int" />
+          <Property Name="dersid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblEgitmenDers">
+          <Key>
+            <PropertyRef Name="egitmenDersid" />
+          </Key>
+          <Property Name="egitmenDersid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="egitmenid" Type="int" />
+          <Property Name="dersid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblFakulte">
+          <Key>
+            <PropertyRef Name="fakulteid" />
+          </Key>
+          <Property Name="fakulteid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fakultead" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblKullanici">
+          <Key>
+            <PropertyRef Name="kullaniciid" />
+          </Key>
+          <Property Name="kullaniciid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullaniciad" Type="varchar" MaxLength="50" />
+          <Property Name="kullanicisifre" Type="varchar" MaxLength="10" />
+          <Property Name="yetkiturid" Type="int" />
+          <Property Name="Role" Type="varchar" MaxLength="3" />
+          <Property Name="egitmenid" Type="int" />
+          <Property Name="ogrenciid" Type="int" />
+          <Property Name="ogrenciisleriid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblOgrenci">
+          <Key>
+            <PropertyRef Name="ogrenciid" />
+          </Key>
+          <Property Name="ogrenciid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ogrenciad" Type="varchar" MaxLength="50" />
+          <Property Name="ogrencisoyad" Type="varchar" MaxLength="50" />
+          <Property Name="ogrencino" Type="int" />
+          <Property Name="ogrencieposta" Type="varchar" MaxLength="50" />
+          <Property Name="bolumid" Type="int" />
+          <Property Name="yetkiturid" Type="int" />
+          <Property Name="fakulteid" Type="int" />
+          <Property Name="dersid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblOgrenciCevap">
+          <Key>
+            <PropertyRef Name="cevapid" />
+          </Key>
+          <Property Name="cevapid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="soruid" Type="int" />
+          <Property Name="cevap" Type="varchar" MaxLength="1" />
+          <Property Name="ogrenciid" Type="int" />
+          <Property Name="sinavid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblOgrenciDers">
+          <Key>
+            <PropertyRef Name="ogrenciDersID" />
+          </Key>
+          <Property Name="ogrenciDersID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ogrenciid" Type="int" />
+          <Property Name="dersid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblOgrenciIsleri">
+          <Key>
+            <PropertyRef Name="ogrenciisleriid" />
+          </Key>
+          <Property Name="ogrenciisleriid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ogrenciisleriad" Type="varchar" MaxLength="20" />
+          <Property Name="ogrenciislerisifre" Type="varchar" MaxLength="10" />
+          <Property Name="yetkiturid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblOgrenciPuan">
+          <Key>
+            <PropertyRef Name="puanid" />
+          </Key>
+          <Property Name="puanid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="puan" Type="int" />
+          <Property Name="soruid" Type="int" />
+          <Property Name="sinavid" Type="int" />
+          <Property Name="ogrenciid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblSinav">
+          <Key>
+            <PropertyRef Name="sinavid" />
+          </Key>
+          <Property Name="sinavid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sinavad" Type="varchar" MaxLength="100" />
+          <Property Name="sinavtarih" Type="datetime" />
+          <Property Name="dersid" Type="int" />
+          <Property Name="egitmenid" Type="int" />
+          <Property Name="sinavbitis" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblSinavSoru">
+          <Key>
+            <PropertyRef Name="sinavSoruid" />
+          </Key>
+          <Property Name="sinavSoruid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sinavid" Type="int" />
+          <Property Name="soruid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblSoru">
+          <Key>
+            <PropertyRef Name="soruid" />
+          </Key>
+          <Property Name="soruid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="soru" Type="varchar" MaxLength="5000" />
+          <Property Name="dogru_cevap" Type="varchar" MaxLength="1" />
+          <Property Name="dersid" Type="int" />
+          <Property Name="sinavid" Type="int" />
+          <Property Name="soruno" Type="int" />
+          <Property Name="A" Type="varchar" MaxLength="500" />
+          <Property Name="B" Type="varchar" MaxLength="500" />
+          <Property Name="C" Type="varchar" MaxLength="500" />
+          <Property Name="D" Type="varchar" MaxLength="500" />
+          <Property Name="E" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblYetki">
+          <Key>
+            <PropertyRef Name="yetkiid" />
+          </Key>
+          <Property Name="yetkiid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullaniciid" Type="int" />
+          <Property Name="yetkiturid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblYetkiTur">
+          <Key>
+            <PropertyRef Name="yetkiturid" />
+          </Key>
+          <Property Name="yetkiturid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yetkiturad" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_tblBolum_tblFakulte">
+          <End Role="tblFakulte" Type="Self.tblFakulte" Multiplicity="0..1" />
+          <End Role="tblBolum" Type="Self.tblBolum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFakulte">
+              <PropertyRef Name="fakulteid" />
+            </Principal>
+            <Dependent Role="tblBolum">
+              <PropertyRef Name="fakulteid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBolumEgitmen_tblBolum">
+          <End Role="tblBolum" Type="Self.tblBolum" Multiplicity="0..1" />
+          <End Role="tblBolumEgitmen" Type="Self.tblBolumEgitmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBolum">
+              <PropertyRef Name="bolumid" />
+            </Principal>
+            <Dependent Role="tblBolumEgitmen">
+              <PropertyRef Name="bolumid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBolumEgitmen_tblEgitmen">
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="0..1" />
+          <End Role="tblBolumEgitmen" Type="Self.tblBolumEgitmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEgitmen">
+              <PropertyRef Name="egitmenid" />
+            </Principal>
+            <Dependent Role="tblBolumEgitmen">
+              <PropertyRef Name="egitmenid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDers_tblBolum">
+          <End Role="tblBolum" Type="Self.tblBolum" Multiplicity="0..1" />
+          <End Role="tblDers" Type="Self.tblDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBolum">
+              <PropertyRef Name="bolumid" />
+            </Principal>
+            <Dependent Role="tblDers">
+              <PropertyRef Name="bolumid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEgitmen_tblBolum">
+          <End Role="tblBolum" Type="Self.tblBolum" Multiplicity="0..1" />
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBolum">
+              <PropertyRef Name="bolumid" />
+            </Principal>
+            <Dependent Role="tblEgitmen">
+              <PropertyRef Name="bolumid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEgitmen_tblDers">
+          <End Role="tblDers" Type="Self.tblDers" Multiplicity="0..1" />
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDers">
+              <PropertyRef Name="dersid" />
+            </Principal>
+            <Dependent Role="tblEgitmen">
+              <PropertyRef Name="dersid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEgitmen_tblEgitmen">
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="1" />
+          <End Role="tblEgitmen1" Type="Self.tblEgitmen" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblEgitmen">
+              <PropertyRef Name="egitmenid" />
+            </Principal>
+            <Dependent Role="tblEgitmen1">
+              <PropertyRef Name="egitmenid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEgitmen_tblFakulte">
+          <End Role="tblFakulte" Type="Self.tblFakulte" Multiplicity="0..1" />
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFakulte">
+              <PropertyRef Name="fakulteid" />
+            </Principal>
+            <Dependent Role="tblEgitmen">
+              <PropertyRef Name="fakulteid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEgitmen_tblYetkiTur">
+          <End Role="tblYetkiTur" Type="Self.tblYetkiTur" Multiplicity="0..1" />
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblYetkiTur">
+              <PropertyRef Name="yetkiturid" />
+            </Principal>
+            <Dependent Role="tblEgitmen">
+              <PropertyRef Name="yetkiturid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEgitmenDers_tblDers">
+          <End Role="tblDers" Type="Self.tblDers" Multiplicity="0..1" />
+          <End Role="tblEgitmenDers" Type="Self.tblEgitmenDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDers">
+              <PropertyRef Name="dersid" />
+            </Principal>
+            <Dependent Role="tblEgitmenDers">
+              <PropertyRef Name="dersid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEgitmenDers_tblEgitmen">
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="0..1" />
+          <End Role="tblEgitmenDers" Type="Self.tblEgitmenDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEgitmen">
+              <PropertyRef Name="egitmenid" />
+            </Principal>
+            <Dependent Role="tblEgitmenDers">
+              <PropertyRef Name="egitmenid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullanici_tblEgitmen">
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="0..1" />
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEgitmen">
+              <PropertyRef Name="egitmenid" />
+            </Principal>
+            <Dependent Role="tblKullanici">
+              <PropertyRef Name="egitmenid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullanici_tblOgrenci">
+          <End Role="tblOgrenci" Type="Self.tblOgrenci" Multiplicity="0..1" />
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOgrenci">
+              <PropertyRef Name="ogrenciid" />
+            </Principal>
+            <Dependent Role="tblKullanici">
+              <PropertyRef Name="ogrenciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullanici_tblOgrenciIsleri">
+          <End Role="tblOgrenciIsleri" Type="Self.tblOgrenciIsleri" Multiplicity="0..1" />
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOgrenciIsleri">
+              <PropertyRef Name="ogrenciisleriid" />
+            </Principal>
+            <Dependent Role="tblKullanici">
+              <PropertyRef Name="ogrenciisleriid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullanici_tblYetkiTur1">
+          <End Role="tblYetkiTur" Type="Self.tblYetkiTur" Multiplicity="0..1" />
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblYetkiTur">
+              <PropertyRef Name="yetkiturid" />
+            </Principal>
+            <Dependent Role="tblKullanici">
+              <PropertyRef Name="yetkiturid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenci_tblBolum">
+          <End Role="tblBolum" Type="Self.tblBolum" Multiplicity="0..1" />
+          <End Role="tblOgrenci" Type="Self.tblOgrenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBolum">
+              <PropertyRef Name="bolumid" />
+            </Principal>
+            <Dependent Role="tblOgrenci">
+              <PropertyRef Name="bolumid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenci_tblDers">
+          <End Role="tblDers" Type="Self.tblDers" Multiplicity="0..1" />
+          <End Role="tblOgrenci" Type="Self.tblOgrenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDers">
+              <PropertyRef Name="dersid" />
+            </Principal>
+            <Dependent Role="tblOgrenci">
+              <PropertyRef Name="dersid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenci_tblFakulte">
+          <End Role="tblFakulte" Type="Self.tblFakulte" Multiplicity="0..1" />
+          <End Role="tblOgrenci" Type="Self.tblOgrenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFakulte">
+              <PropertyRef Name="fakulteid" />
+            </Principal>
+            <Dependent Role="tblOgrenci">
+              <PropertyRef Name="fakulteid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenci_tblYetkiTur">
+          <End Role="tblYetkiTur" Type="Self.tblYetkiTur" Multiplicity="0..1" />
+          <End Role="tblOgrenci" Type="Self.tblOgrenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblYetkiTur">
+              <PropertyRef Name="yetkiturid" />
+            </Principal>
+            <Dependent Role="tblOgrenci">
+              <PropertyRef Name="yetkiturid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciCevap_tblOgrenci">
+          <End Role="tblOgrenci" Type="Self.tblOgrenci" Multiplicity="0..1" />
+          <End Role="tblOgrenciCevap" Type="Self.tblOgrenciCevap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOgrenci">
+              <PropertyRef Name="ogrenciid" />
+            </Principal>
+            <Dependent Role="tblOgrenciCevap">
+              <PropertyRef Name="ogrenciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciCevap_tblSinav">
+          <End Role="tblSinav" Type="Self.tblSinav" Multiplicity="0..1" />
+          <End Role="tblOgrenciCevap" Type="Self.tblOgrenciCevap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSinav">
+              <PropertyRef Name="sinavid" />
+            </Principal>
+            <Dependent Role="tblOgrenciCevap">
+              <PropertyRef Name="sinavid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciCevap_tblSoru">
+          <End Role="tblSoru" Type="Self.tblSoru" Multiplicity="0..1" />
+          <End Role="tblOgrenciCevap" Type="Self.tblOgrenciCevap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSoru">
+              <PropertyRef Name="soruid" />
+            </Principal>
+            <Dependent Role="tblOgrenciCevap">
+              <PropertyRef Name="soruid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciDers_tblDers">
+          <End Role="tblDers" Type="Self.tblDers" Multiplicity="0..1" />
+          <End Role="tblOgrenciDers" Type="Self.tblOgrenciDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDers">
+              <PropertyRef Name="dersid" />
+            </Principal>
+            <Dependent Role="tblOgrenciDers">
+              <PropertyRef Name="dersid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciDers_tblOgrenci">
+          <End Role="tblOgrenci" Type="Self.tblOgrenci" Multiplicity="0..1" />
+          <End Role="tblOgrenciDers" Type="Self.tblOgrenciDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOgrenci">
+              <PropertyRef Name="ogrenciid" />
+            </Principal>
+            <Dependent Role="tblOgrenciDers">
+              <PropertyRef Name="ogrenciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciIsleri_tblYetkiTur">
+          <End Role="tblYetkiTur" Type="Self.tblYetkiTur" Multiplicity="0..1" />
+          <End Role="tblOgrenciIsleri" Type="Self.tblOgrenciIsleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblYetkiTur">
+              <PropertyRef Name="yetkiturid" />
+            </Principal>
+            <Dependent Role="tblOgrenciIsleri">
+              <PropertyRef Name="yetkiturid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciPuan_tblOgrenci">
+          <End Role="tblOgrenci" Type="Self.tblOgrenci" Multiplicity="0..1" />
+          <End Role="tblOgrenciPuan" Type="Self.tblOgrenciPuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOgrenci">
+              <PropertyRef Name="ogrenciid" />
+            </Principal>
+            <Dependent Role="tblOgrenciPuan">
+              <PropertyRef Name="ogrenciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciPuan_tblSinav">
+          <End Role="tblSinav" Type="Self.tblSinav" Multiplicity="0..1" />
+          <End Role="tblOgrenciPuan" Type="Self.tblOgrenciPuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSinav">
+              <PropertyRef Name="sinavid" />
+            </Principal>
+            <Dependent Role="tblOgrenciPuan">
+              <PropertyRef Name="sinavid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciPuan_tblSoru">
+          <End Role="tblSoru" Type="Self.tblSoru" Multiplicity="0..1" />
+          <End Role="tblOgrenciPuan" Type="Self.tblOgrenciPuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSoru">
+              <PropertyRef Name="soruid" />
+            </Principal>
+            <Dependent Role="tblOgrenciPuan">
+              <PropertyRef Name="soruid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSinav_tblDers">
+          <End Role="tblDers" Type="Self.tblDers" Multiplicity="0..1" />
+          <End Role="tblSinav" Type="Self.tblSinav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDers">
+              <PropertyRef Name="dersid" />
+            </Principal>
+            <Dependent Role="tblSinav">
+              <PropertyRef Name="dersid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSinav_tblEgitmen">
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="0..1" />
+          <End Role="tblSinav" Type="Self.tblSinav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEgitmen">
+              <PropertyRef Name="egitmenid" />
+            </Principal>
+            <Dependent Role="tblSinav">
+              <PropertyRef Name="egitmenid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSinavSoru_tblSinav">
+          <End Role="tblSinav" Type="Self.tblSinav" Multiplicity="0..1" />
+          <End Role="tblSinavSoru" Type="Self.tblSinavSoru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSinav">
+              <PropertyRef Name="sinavid" />
+            </Principal>
+            <Dependent Role="tblSinavSoru">
+              <PropertyRef Name="sinavid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSinavSoru_tblSoru">
+          <End Role="tblSoru" Type="Self.tblSoru" Multiplicity="0..1" />
+          <End Role="tblSinavSoru" Type="Self.tblSinavSoru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSoru">
+              <PropertyRef Name="soruid" />
+            </Principal>
+            <Dependent Role="tblSinavSoru">
+              <PropertyRef Name="soruid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblYetki_tblKullanici">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="0..1" />
+          <End Role="tblYetki" Type="Self.tblYetki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="kullaniciid" />
+            </Principal>
+            <Dependent Role="tblYetki">
+              <PropertyRef Name="kullaniciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblYetki_tblYetkiTur">
+          <End Role="tblYetkiTur" Type="Self.tblYetkiTur" Multiplicity="0..1" />
+          <End Role="tblYetki" Type="Self.tblYetki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblYetkiTur">
+              <PropertyRef Name="yetkiturid" />
+            </Principal>
+            <Dependent Role="tblYetki">
+              <PropertyRef Name="yetkiturid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlinesinavdbModelStoreContainer">
+          <EntitySet Name="tblBolum" EntityType="Self.tblBolum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBolumEgitmen" EntityType="Self.tblBolumEgitmen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDers" EntityType="Self.tblDers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEgitmen" EntityType="Self.tblEgitmen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEgitmenDers" EntityType="Self.tblEgitmenDers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFakulte" EntityType="Self.tblFakulte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblKullanici" EntityType="Self.tblKullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOgrenci" EntityType="Self.tblOgrenci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOgrenciCevap" EntityType="Self.tblOgrenciCevap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOgrenciDers" EntityType="Self.tblOgrenciDers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOgrenciIsleri" EntityType="Self.tblOgrenciIsleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOgrenciPuan" EntityType="Self.tblOgrenciPuan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSinav" EntityType="Self.tblSinav" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSinavSoru" EntityType="Self.tblSinavSoru" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSoru" EntityType="Self.tblSoru" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblYetki" EntityType="Self.tblYetki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblYetkiTur" EntityType="Self.tblYetkiTur" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblBolum_tblFakulte" Association="Self.FK_tblBolum_tblFakulte">
+            <End Role="tblFakulte" EntitySet="tblFakulte" />
+            <End Role="tblBolum" EntitySet="tblBolum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBolumEgitmen_tblBolum" Association="Self.FK_tblBolumEgitmen_tblBolum">
+            <End Role="tblBolum" EntitySet="tblBolum" />
+            <End Role="tblBolumEgitmen" EntitySet="tblBolumEgitmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBolumEgitmen_tblEgitmen" Association="Self.FK_tblBolumEgitmen_tblEgitmen">
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+            <End Role="tblBolumEgitmen" EntitySet="tblBolumEgitmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDers_tblBolum" Association="Self.FK_tblDers_tblBolum">
+            <End Role="tblBolum" EntitySet="tblBolum" />
+            <End Role="tblDers" EntitySet="tblDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEgitmen_tblBolum" Association="Self.FK_tblEgitmen_tblBolum">
+            <End Role="tblBolum" EntitySet="tblBolum" />
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEgitmen_tblDers" Association="Self.FK_tblEgitmen_tblDers">
+            <End Role="tblDers" EntitySet="tblDers" />
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEgitmen_tblEgitmen" Association="Self.FK_tblEgitmen_tblEgitmen">
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+            <End Role="tblEgitmen1" EntitySet="tblEgitmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEgitmen_tblFakulte" Association="Self.FK_tblEgitmen_tblFakulte">
+            <End Role="tblFakulte" EntitySet="tblFakulte" />
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEgitmen_tblYetkiTur" Association="Self.FK_tblEgitmen_tblYetkiTur">
+            <End Role="tblYetkiTur" EntitySet="tblYetkiTur" />
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEgitmenDers_tblDers" Association="Self.FK_tblEgitmenDers_tblDers">
+            <End Role="tblDers" EntitySet="tblDers" />
+            <End Role="tblEgitmenDers" EntitySet="tblEgitmenDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEgitmenDers_tblEgitmen" Association="Self.FK_tblEgitmenDers_tblEgitmen">
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+            <End Role="tblEgitmenDers" EntitySet="tblEgitmenDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullanici_tblEgitmen" Association="Self.FK_tblKullanici_tblEgitmen">
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullanici_tblOgrenci" Association="Self.FK_tblKullanici_tblOgrenci">
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullanici_tblOgrenciIsleri" Association="Self.FK_tblKullanici_tblOgrenciIsleri">
+            <End Role="tblOgrenciIsleri" EntitySet="tblOgrenciIsleri" />
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullanici_tblYetkiTur1" Association="Self.FK_tblKullanici_tblYetkiTur1">
+            <End Role="tblYetkiTur" EntitySet="tblYetkiTur" />
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenci_tblBolum" Association="Self.FK_tblOgrenci_tblBolum">
+            <End Role="tblBolum" EntitySet="tblBolum" />
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenci_tblDers" Association="Self.FK_tblOgrenci_tblDers">
+            <End Role="tblDers" EntitySet="tblDers" />
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenci_tblFakulte" Association="Self.FK_tblOgrenci_tblFakulte">
+            <End Role="tblFakulte" EntitySet="tblFakulte" />
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenci_tblYetkiTur" Association="Self.FK_tblOgrenci_tblYetkiTur">
+            <End Role="tblYetkiTur" EntitySet="tblYetkiTur" />
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciCevap_tblOgrenci" Association="Self.FK_tblOgrenciCevap_tblOgrenci">
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+            <End Role="tblOgrenciCevap" EntitySet="tblOgrenciCevap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciCevap_tblSinav" Association="Self.FK_tblOgrenciCevap_tblSinav">
+            <End Role="tblSinav" EntitySet="tblSinav" />
+            <End Role="tblOgrenciCevap" EntitySet="tblOgrenciCevap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciCevap_tblSoru" Association="Self.FK_tblOgrenciCevap_tblSoru">
+            <End Role="tblSoru" EntitySet="tblSoru" />
+            <End Role="tblOgrenciCevap" EntitySet="tblOgrenciCevap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciDers_tblDers" Association="Self.FK_tblOgrenciDers_tblDers">
+            <End Role="tblDers" EntitySet="tblDers" />
+            <End Role="tblOgrenciDers" EntitySet="tblOgrenciDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciDers_tblOgrenci" Association="Self.FK_tblOgrenciDers_tblOgrenci">
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+            <End Role="tblOgrenciDers" EntitySet="tblOgrenciDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciIsleri_tblYetkiTur" Association="Self.FK_tblOgrenciIsleri_tblYetkiTur">
+            <End Role="tblYetkiTur" EntitySet="tblYetkiTur" />
+            <End Role="tblOgrenciIsleri" EntitySet="tblOgrenciIsleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciPuan_tblOgrenci" Association="Self.FK_tblOgrenciPuan_tblOgrenci">
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+            <End Role="tblOgrenciPuan" EntitySet="tblOgrenciPuan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciPuan_tblSinav" Association="Self.FK_tblOgrenciPuan_tblSinav">
+            <End Role="tblSinav" EntitySet="tblSinav" />
+            <End Role="tblOgrenciPuan" EntitySet="tblOgrenciPuan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciPuan_tblSoru" Association="Self.FK_tblOgrenciPuan_tblSoru">
+            <End Role="tblSoru" EntitySet="tblSoru" />
+            <End Role="tblOgrenciPuan" EntitySet="tblOgrenciPuan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSinav_tblDers" Association="Self.FK_tblSinav_tblDers">
+            <End Role="tblDers" EntitySet="tblDers" />
+            <End Role="tblSinav" EntitySet="tblSinav" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSinav_tblEgitmen" Association="Self.FK_tblSinav_tblEgitmen">
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+            <End Role="tblSinav" EntitySet="tblSinav" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSinavSoru_tblSinav" Association="Self.FK_tblSinavSoru_tblSinav">
+            <End Role="tblSinav" EntitySet="tblSinav" />
+            <End Role="tblSinavSoru" EntitySet="tblSinavSoru" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSinavSoru_tblSoru" Association="Self.FK_tblSinavSoru_tblSoru">
+            <End Role="tblSoru" EntitySet="tblSoru" />
+            <End Role="tblSinavSoru" EntitySet="tblSinavSoru" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblYetki_tblKullanici" Association="Self.FK_tblYetki_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblYetki" EntitySet="tblYetki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblYetki_tblYetkiTur" Association="Self.FK_tblYetki_tblYetkiTur">
+            <End Role="tblYetkiTur" EntitySet="tblYetkiTur" />
+            <End Role="tblYetki" EntitySet="tblYetki" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OnlinesinavdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblBolum">
+          <Key>
+            <PropertyRef Name="bolumid" />
+          </Key>
+          <Property Name="bolumid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bolumad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fakulteid" Type="Int32" />
+          <NavigationProperty Name="tblFakulte" Relationship="Self.FK_tblBolum_tblFakulte" FromRole="tblBolum" ToRole="tblFakulte" />
+          <NavigationProperty Name="tblBolumEgitmen" Relationship="Self.FK_tblBolumEgitmen_tblBolum" FromRole="tblBolum" ToRole="tblBolumEgitmen" />
+          <NavigationProperty Name="tblDers" Relationship="Self.FK_tblDers_tblBolum" FromRole="tblBolum" ToRole="tblDers" />
+          <NavigationProperty Name="tblEgitmen" Relationship="Self.FK_tblEgitmen_tblBolum" FromRole="tblBolum" ToRole="tblEgitmen" />
+          <NavigationProperty Name="tblOgrenci" Relationship="Self.FK_tblOgrenci_tblBolum" FromRole="tblBolum" ToRole="tblOgrenci" />
+        </EntityType>
+        <EntityType Name="tblBolumEgitmen">
+          <Key>
+            <PropertyRef Name="bolumEgitmenid" />
+          </Key>
+          <Property Name="bolumEgitmenid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bolumid" Type="Int32" />
+          <Property Name="egitmenid" Type="Int32" />
+          <NavigationProperty Name="tblBolum" Relationship="Self.FK_tblBolumEgitmen_tblBolum" FromRole="tblBolumEgitmen" ToRole="tblBolum" />
+          <NavigationProperty Name="tblEgitmen" Relationship="Self.FK_tblBolumEgitmen_tblEgitmen" FromRole="tblBolumEgitmen" ToRole="tblEgitmen" />
+        </EntityType>
+        <EntityType Name="tblDers">
+          <Key>
+            <PropertyRef Name="dersid" />
+          </Key>
+          <Property Name="dersid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dersad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="derskod" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="derssaat" Type="Int32" />
+          <Property Name="derskredi" Type="Int32" />
+          <Property Name="dersdonem" Type="Int32" />
+          <Property Name="dersakts" Type="Int32" />
+          <Property Name="bolumid" Type="Int32" />
+          <NavigationProperty Name="tblBolum" Relationship="Self.FK_tblDers_tblBolum" FromRole="tblDers" ToRole="tblBolum" />
+          <NavigationProperty Name="tblEgitmen" Relationship="Self.FK_tblEgitmen_tblDers" FromRole="tblDers" ToRole="tblEgitmen" />
+          <NavigationProperty Name="tblEgitmenDers" Relationship="Self.FK_tblEgitmenDers_tblDers" FromRole="tblDers" ToRole="tblEgitmenDers" />
+          <NavigationProperty Name="tblOgrenci" Relationship="Self.FK_tblOgrenci_tblDers" FromRole="tblDers" ToRole="tblOgrenci" />
+          <NavigationProperty Name="tblOgrenciDers" Relationship="Self.FK_tblOgrenciDers_tblDers" FromRole="tblDers" ToRole="tblOgrenciDers" />
+          <NavigationProperty Name="tblSinav" Relationship="Self.FK_tblSinav_tblEgitmen1" FromRole="tblDers" ToRole="tblSinav" />
+          <NavigationProperty Name="tblSoru" Relationship="OnlinesinavdbModel.FK_tblSoru_tblDers" FromRole="tblDers" ToRole="tblSoru" />
+        </EntityType>
+        <EntityType Name="tblEgitmen">
+          <Key>
+            <PropertyRef Name="egitmenid" />
+          </Key>
+          <Property Name="egitmenid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="egitmenad" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="egitmensoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="egitmeneposta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bolumid" Type="Int32" />
+          <Property Name="yetkiturid" Type="Int32" />
+          <Property Name="fakulteid" Type="Int32" />
+          <Property Name="dersid" Type="Int32" />
+          <NavigationProperty Name="tblBolum" Relationship="Self.FK_tblEgitmen_tblBolum" FromRole="tblEgitmen" ToRole="tblBolum" />
+          <NavigationProperty Name="tblBolumEgitmen" Relationship="Self.FK_tblBolumEgitmen_tblEgitmen" FromRole="tblEgitmen" ToRole="tblBolumEgitmen" />
+          <NavigationProperty Name="tblDers" Relationship="Self.FK_tblEgitmen_tblDers" FromRole="tblEgitmen" ToRole="tblDers" />
+          <NavigationProperty Name="tblEgitmen1" Relationship="Self.FK_tblEgitmen_tblEgitmen" FromRole="tblEgitmen" ToRole="tblEgitmen1" />
+          <NavigationProperty Name="tblEgitmen2" Relationship="Self.FK_tblEgitmen_tblEgitmen" FromRole="tblEgitmen1" ToRole="tblEgitmen" />
+          <NavigationProperty Name="tblFakulte" Relationship="Self.FK_tblEgitmen_tblFakulte" FromRole="tblEgitmen" ToRole="tblFakulte" />
+          <NavigationProperty Name="tblYetkiTur" Relationship="Self.FK_tblEgitmen_tblYetkiTur" FromRole="tblEgitmen" ToRole="tblYetkiTur" />
+          <NavigationProperty Name="tblEgitmenDers" Relationship="Self.FK_tblEgitmenDers_tblEgitmen" FromRole="tblEgitmen" ToRole="tblEgitmenDers" />
+          <NavigationProperty Name="tblKullanici" Relationship="Self.FK_tblKullanici_tblEgitmen" FromRole="tblEgitmen" ToRole="tblKullanici" />
+          <NavigationProperty Name="tblSinav" Relationship="OnlinesinavdbModel.FK_tblSinav_tblEgitmen" FromRole="tblEgitmen" ToRole="tblSinav" />
+        </EntityType>
+        <EntityType Name="tblEgitmenDers">
+          <Key>
+            <PropertyRef Name="egitmenDersid" />
+          </Key>
+          <Property Name="egitmenDersid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="egitmenid" Type="Int32" />
+          <Property Name="dersid" Type="Int32" />
+          <NavigationProperty Name="tblDers" Relationship="Self.FK_tblEgitmenDers_tblDers" FromRole="tblEgitmenDers" ToRole="tblDers" />
+          <NavigationProperty Name="tblEgitmen" Relationship="Self.FK_tblEgitmenDers_tblEgitmen" FromRole="tblEgitmenDers" ToRole="tblEgitmen" />
+        </EntityType>
+        <EntityType Name="tblFakulte">
+          <Key>
+            <PropertyRef Name="fakulteid" />
+          </Key>
+          <Property Name="fakulteid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fakultead" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblBolum" Relationship="Self.FK_tblBolum_tblFakulte" FromRole="tblFakulte" ToRole="tblBolum" />
+          <NavigationProperty Name="tblEgitmen" Relationship="Self.FK_tblEgitmen_tblFakulte" FromRole="tblFakulte" ToRole="tblEgitmen" />
+          <NavigationProperty Name="tblOgrenci" Relationship="Self.FK_tblOgrenci_tblFakulte" FromRole="tblFakulte" ToRole="tblOgrenci" />
+        </EntityType>
+        <EntityType Name="tblKullanici">
+          <Key>
+            <PropertyRef Name="kullaniciid" />
+          </Key>
+          <Property Name="kullaniciid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullaniciad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kullanicisifre" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="yetkiturid" Type="Int32" />
+          <Property Name="Role" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="egitmenid" Type="Int32" />
+          <Property Name="ogrenciid" Type="Int32" />
+          <Property Name="ogrenciisleriid" Type="Int32" />
+          <NavigationProperty Name="tblEgitmen" Relationship="Self.FK_tblKullanici_tblEgitmen" FromRole="tblKullanici" ToRole="tblEgitmen" />
+          <NavigationProperty Name="tblOgrenci" Relationship="Self.FK_tblKullanici_tblOgrenci" FromRole="tblKullanici" ToRole="tblOgrenci" />
+          <NavigationProperty Name="tblOgrenciIsleri" Relationship="Self.FK_tblKullanici_tblOgrenciIsleri" FromRole="tblKullanici" ToRole="tblOgrenciIsleri" />
+          <NavigationProperty Name="tblYetkiTur" Relationship="Self.FK_tblKullanici_tblYetkiTur1" FromRole="tblKullanici" ToRole="tblYetkiTur" />
+          <NavigationProperty Name="tblYetki" Relationship="Self.FK_tblYetki_tblKullanici" FromRole="tblKullanici" ToRole="tblYetki" />
+        </EntityType>
+        <EntityType Name="tblOgrenci">
+          <Key>
+            <PropertyRef Name="ogrenciid" />
+          </Key>
+          <Property Name="ogrenciid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ogrenciad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ogrencisoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ogrencino" Type="Int32" />
+          <Property Name="ogrencieposta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bolumid" Type="Int32" />
+          <Property Name="yetkiturid" Type="Int32" />
+          <Property Name="fakulteid" Type="Int32" />
+          <Property Name="dersid" Type="Int32" />
+          <NavigationProperty Name="tblBolum" Relationship="Self.FK_tblOgrenci_tblBolum" FromRole="tblOgrenci" ToRole="tblBolum" />
+          <NavigationProperty Name="tblDers" Relationship="Self.FK_tblOgrenci_tblDers" FromRole="tblOgrenci" ToRole="tblDers" />
+          <NavigationProperty Name="tblFakulte" Relationship="Self.FK_tblOgrenci_tblFakulte" FromRole="tblOgrenci" ToRole="tblFakulte" />
+          <NavigationProperty Name="tblKullanici" Relationship="Self.FK_tblKullanici_tblOgrenci" FromRole="tblOgrenci" ToRole="tblKullanici" />
+          <NavigationProperty Name="tblYetkiTur" Relationship="Self.FK_tblOgrenci_tblYetkiTur" FromRole="tblOgrenci" ToRole="tblYetkiTur" />
+          <NavigationProperty Name="tblOgrenciDers" Relationship="Self.FK_tblOgrenciDers_tblOgrenci" FromRole="tblOgrenci" ToRole="tblOgrenciDers" />
+          <NavigationProperty Name="tblOgrenciCevap" Relationship="OnlinesinavdbModel.FK_tblOgrenciCevap_tblOgrenci" FromRole="tblOgrenci" ToRole="tblOgrenciCevap" />
+          <NavigationProperty Name="tblOgrenciPuan" Relationship="OnlinesinavdbModel.FK_tblOgrenciPuan_tblOgrenci" FromRole="tblOgrenci" ToRole="tblOgrenciPuan" />
+        </EntityType>
+        <EntityType Name="tblOgrenciDers">
+          <Key>
+            <PropertyRef Name="ogrenciDersID" />
+          </Key>
+          <Property Name="ogrenciDersID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ogrenciid" Type="Int32" />
+          <Property Name="dersid" Type="Int32" />
+          <NavigationProperty Name="tblDers" Relationship="Self.FK_tblOgrenciDers_tblDers" FromRole="tblOgrenciDers" ToRole="tblDers" />
+          <NavigationProperty Name="tblOgrenci" Relationship="Self.FK_tblOgrenciDers_tblOgrenci" FromRole="tblOgrenciDers" ToRole="tblOgrenci" />
+        </EntityType>
+        <EntityType Name="tblOgrenciIsleri">
+          <Key>
+            <PropertyRef Name="ogrenciisleriid" />
+          </Key>
+          <Property Name="ogrenciisleriid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ogrenciisleriad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ogrenciislerisifre" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="yetkiturid" Type="Int32" />
+          <NavigationProperty Name="tblKullanici" Relationship="Self.FK_tblKullanici_tblOgrenciIsleri" FromRole="tblOgrenciIsleri" ToRole="tblKullanici" />
+          <NavigationProperty Name="tblYetkiTur" Relationship="Self.FK_tblOgrenciIsleri_tblYetkiTur" FromRole="tblOgrenciIsleri" ToRole="tblYetkiTur" />
+        </EntityType>
+        <EntityType Name="tblSinav">
+          <Key>
+            <PropertyRef Name="sinavid" />
+          </Key>
+          <Property Name="sinavid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sinavad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="sinavtarih" Type="DateTime" Precision="3" />
+          <Property Name="dersid" Type="Int32" />
+          <Property Name="egitmenid" Type="Int32" />
+          <NavigationProperty Name="tblDers" Relationship="Self.FK_tblSinav_tblEgitmen1" FromRole="tblSinav" ToRole="tblDers" />
+          <NavigationProperty Name="tblEgitmen" Relationship="OnlinesinavdbModel.FK_tblSinav_tblEgitmen" FromRole="tblSinav" ToRole="tblEgitmen" />
+          <NavigationProperty Name="tblSinavSoru" Relationship="OnlinesinavdbModel.FK_tblSinavSoru_tblSinav" FromRole="tblSinav" ToRole="tblSinavSoru" />
+          <NavigationProperty Name="tblSoru" Relationship="OnlinesinavdbModel.FK_tblSoru_tblSinav" FromRole="tblSinav" ToRole="tblSoru" />
+          <NavigationProperty Name="tblOgrenciCevap" Relationship="OnlinesinavdbModel.FK_tblOgrenciCevap_tblSinav" FromRole="tblSinav" ToRole="tblOgrenciCevap" />
+          <NavigationProperty Name="tblOgrenciPuan" Relationship="OnlinesinavdbModel.FK_tblOgrenciPuan_tblSinav" FromRole="tblSinav" ToRole="tblOgrenciPuan" />
+          <Property Name="sinavbitis" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblYetki">
+          <Key>
+            <PropertyRef Name="yetkiid" />
+          </Key>
+          <Property Name="yetkiid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullaniciid" Type="Int32" />
+          <Property Name="yetkiturid" Type="Int32" />
+          <NavigationProperty Name="tblKullanici" Relationship="Self.FK_tblYetki_tblKullanici" FromRole="tblYetki" ToRole="tblKullanici" />
+          <NavigationProperty Name="tblYetkiTur" Relationship="Self.FK_tblYetki_tblYetkiTur" FromRole="tblYetki" ToRole="tblYetkiTur" />
+        </EntityType>
+        <EntityType Name="tblYetkiTur">
+          <Key>
+            <PropertyRef Name="yetkiturid" />
+          </Key>
+          <Property Name="yetkiturid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yetkiturad" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblEgitmen" Relationship="Self.FK_tblEgitmen_tblYetkiTur" FromRole="tblYetkiTur" ToRole="tblEgitmen" />
+          <NavigationProperty Name="tblKullanici" Relationship="Self.FK_tblKullanici_tblYetkiTur1" FromRole="tblYetkiTur" ToRole="tblKullanici" />
+          <NavigationProperty Name="tblOgrenci" Relationship="Self.FK_tblOgrenci_tblYetkiTur" FromRole="tblYetkiTur" ToRole="tblOgrenci" />
+          <NavigationProperty Name="tblOgrenciIsleri" Relationship="Self.FK_tblOgrenciIsleri_tblYetkiTur" FromRole="tblYetkiTur" ToRole="tblOgrenciIsleri" />
+          <NavigationProperty Name="tblYetki" Relationship="Self.FK_tblYetki_tblYetkiTur" FromRole="tblYetkiTur" ToRole="tblYetki" />
+        </EntityType>
+        <Association Name="FK_tblBolum_tblFakulte">
+          <End Role="tblFakulte" Type="Self.tblFakulte" Multiplicity="0..1" />
+          <End Role="tblBolum" Type="Self.tblBolum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFakulte">
+              <PropertyRef Name="fakulteid" />
+            </Principal>
+            <Dependent Role="tblBolum">
+              <PropertyRef Name="fakulteid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBolumEgitmen_tblBolum">
+          <End Role="tblBolum" Type="Self.tblBolum" Multiplicity="0..1" />
+          <End Role="tblBolumEgitmen" Type="Self.tblBolumEgitmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBolum">
+              <PropertyRef Name="bolumid" />
+            </Principal>
+            <Dependent Role="tblBolumEgitmen">
+              <PropertyRef Name="bolumid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblDers_tblBolum">
+          <End Role="tblBolum" Type="Self.tblBolum" Multiplicity="0..1" />
+          <End Role="tblDers" Type="Self.tblDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBolum">
+              <PropertyRef Name="bolumid" />
+            </Principal>
+            <Dependent Role="tblDers">
+              <PropertyRef Name="bolumid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEgitmen_tblBolum">
+          <End Role="tblBolum" Type="Self.tblBolum" Multiplicity="0..1" />
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBolum">
+              <PropertyRef Name="bolumid" />
+            </Principal>
+            <Dependent Role="tblEgitmen">
+              <PropertyRef Name="bolumid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenci_tblBolum">
+          <End Role="tblBolum" Type="Self.tblBolum" Multiplicity="0..1" />
+          <End Role="tblOgrenci" Type="Self.tblOgrenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBolum">
+              <PropertyRef Name="bolumid" />
+            </Principal>
+            <Dependent Role="tblOgrenci">
+              <PropertyRef Name="bolumid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBolumEgitmen_tblEgitmen">
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="0..1" />
+          <End Role="tblBolumEgitmen" Type="Self.tblBolumEgitmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEgitmen">
+              <PropertyRef Name="egitmenid" />
+            </Principal>
+            <Dependent Role="tblBolumEgitmen">
+              <PropertyRef Name="egitmenid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEgitmen_tblDers">
+          <End Role="tblDers" Type="Self.tblDers" Multiplicity="0..1" />
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDers">
+              <PropertyRef Name="dersid" />
+            </Principal>
+            <Dependent Role="tblEgitmen">
+              <PropertyRef Name="dersid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEgitmenDers_tblDers">
+          <End Role="tblDers" Type="Self.tblDers" Multiplicity="0..1" />
+          <End Role="tblEgitmenDers" Type="Self.tblEgitmenDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDers">
+              <PropertyRef Name="dersid" />
+            </Principal>
+            <Dependent Role="tblEgitmenDers">
+              <PropertyRef Name="dersid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenci_tblDers">
+          <End Role="tblDers" Type="Self.tblDers" Multiplicity="0..1" />
+          <End Role="tblOgrenci" Type="Self.tblOgrenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDers">
+              <PropertyRef Name="dersid" />
+            </Principal>
+            <Dependent Role="tblOgrenci">
+              <PropertyRef Name="dersid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciDers_tblDers">
+          <End Role="tblDers" Type="Self.tblDers" Multiplicity="0..1" />
+          <End Role="tblOgrenciDers" Type="Self.tblOgrenciDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDers">
+              <PropertyRef Name="dersid" />
+            </Principal>
+            <Dependent Role="tblOgrenciDers">
+              <PropertyRef Name="dersid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSinav_tblEgitmen1">
+          <End Role="tblDers" Type="Self.tblDers" Multiplicity="0..1" />
+          <End Role="tblSinav" Type="Self.tblSinav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDers">
+              <PropertyRef Name="dersid" />
+            </Principal>
+            <Dependent Role="tblSinav">
+              <PropertyRef Name="dersid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEgitmen_tblEgitmen">
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="1" />
+          <End Role="tblEgitmen1" Type="Self.tblEgitmen" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblEgitmen">
+              <PropertyRef Name="egitmenid" />
+            </Principal>
+            <Dependent Role="tblEgitmen1">
+              <PropertyRef Name="egitmenid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEgitmen_tblFakulte">
+          <End Role="tblFakulte" Type="Self.tblFakulte" Multiplicity="0..1" />
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFakulte">
+              <PropertyRef Name="fakulteid" />
+            </Principal>
+            <Dependent Role="tblEgitmen">
+              <PropertyRef Name="fakulteid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEgitmen_tblYetkiTur">
+          <End Role="tblYetkiTur" Type="Self.tblYetkiTur" Multiplicity="0..1" />
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblYetkiTur">
+              <PropertyRef Name="yetkiturid" />
+            </Principal>
+            <Dependent Role="tblEgitmen">
+              <PropertyRef Name="yetkiturid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEgitmenDers_tblEgitmen">
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="0..1" />
+          <End Role="tblEgitmenDers" Type="Self.tblEgitmenDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEgitmen">
+              <PropertyRef Name="egitmenid" />
+            </Principal>
+            <Dependent Role="tblEgitmenDers">
+              <PropertyRef Name="egitmenid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullanici_tblEgitmen">
+          <End Role="tblEgitmen" Type="Self.tblEgitmen" Multiplicity="0..1" />
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEgitmen">
+              <PropertyRef Name="egitmenid" />
+            </Principal>
+            <Dependent Role="tblKullanici">
+              <PropertyRef Name="egitmenid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenci_tblFakulte">
+          <End Role="tblFakulte" Type="Self.tblFakulte" Multiplicity="0..1" />
+          <End Role="tblOgrenci" Type="Self.tblOgrenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFakulte">
+              <PropertyRef Name="fakulteid" />
+            </Principal>
+            <Dependent Role="tblOgrenci">
+              <PropertyRef Name="fakulteid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullanici_tblOgrenci">
+          <End Role="tblOgrenci" Type="Self.tblOgrenci" Multiplicity="0..1" />
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOgrenci">
+              <PropertyRef Name="ogrenciid" />
+            </Principal>
+            <Dependent Role="tblKullanici">
+              <PropertyRef Name="ogrenciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullanici_tblOgrenciIsleri">
+          <End Role="tblOgrenciIsleri" Type="Self.tblOgrenciIsleri" Multiplicity="0..1" />
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOgrenciIsleri">
+              <PropertyRef Name="ogrenciisleriid" />
+            </Principal>
+            <Dependent Role="tblKullanici">
+              <PropertyRef Name="ogrenciisleriid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblKullanici_tblYetkiTur1">
+          <End Role="tblYetkiTur" Type="Self.tblYetkiTur" Multiplicity="0..1" />
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblYetkiTur">
+              <PropertyRef Name="yetkiturid" />
+            </Principal>
+            <Dependent Role="tblKullanici">
+              <PropertyRef Name="yetkiturid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblYetki_tblKullanici">
+          <End Role="tblKullanici" Type="Self.tblKullanici" Multiplicity="0..1" />
+          <End Role="tblYetki" Type="Self.tblYetki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblKullanici">
+              <PropertyRef Name="kullaniciid" />
+            </Principal>
+            <Dependent Role="tblYetki">
+              <PropertyRef Name="kullaniciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenci_tblYetkiTur">
+          <End Role="tblYetkiTur" Type="Self.tblYetkiTur" Multiplicity="0..1" />
+          <End Role="tblOgrenci" Type="Self.tblOgrenci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblYetkiTur">
+              <PropertyRef Name="yetkiturid" />
+            </Principal>
+            <Dependent Role="tblOgrenci">
+              <PropertyRef Name="yetkiturid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciDers_tblOgrenci">
+          <End Role="tblOgrenci" Type="Self.tblOgrenci" Multiplicity="0..1" />
+          <End Role="tblOgrenciDers" Type="Self.tblOgrenciDers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOgrenci">
+              <PropertyRef Name="ogrenciid" />
+            </Principal>
+            <Dependent Role="tblOgrenciDers">
+              <PropertyRef Name="ogrenciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciIsleri_tblYetkiTur">
+          <End Role="tblYetkiTur" Type="Self.tblYetkiTur" Multiplicity="0..1" />
+          <End Role="tblOgrenciIsleri" Type="Self.tblOgrenciIsleri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblYetkiTur">
+              <PropertyRef Name="yetkiturid" />
+            </Principal>
+            <Dependent Role="tblOgrenciIsleri">
+              <PropertyRef Name="yetkiturid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblYetki_tblYetkiTur">
+          <End Role="tblYetkiTur" Type="Self.tblYetkiTur" Multiplicity="0..1" />
+          <End Role="tblYetki" Type="Self.tblYetki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblYetkiTur">
+              <PropertyRef Name="yetkiturid" />
+            </Principal>
+            <Dependent Role="tblYetki">
+              <PropertyRef Name="yetkiturid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlinesinavdbEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblBolum" EntityType="Self.tblBolum" />
+          <EntitySet Name="tblBolumEgitmen" EntityType="Self.tblBolumEgitmen" />
+          <EntitySet Name="tblDers" EntityType="Self.tblDers" />
+          <EntitySet Name="tblEgitmen" EntityType="Self.tblEgitmen" />
+          <EntitySet Name="tblEgitmenDers" EntityType="Self.tblEgitmenDers" />
+          <EntitySet Name="tblFakulte" EntityType="Self.tblFakulte" />
+          <EntitySet Name="tblKullanici" EntityType="Self.tblKullanici" />
+          <EntitySet Name="tblOgrenci" EntityType="Self.tblOgrenci" />
+          <EntitySet Name="tblOgrenciDers" EntityType="Self.tblOgrenciDers" />
+          <EntitySet Name="tblOgrenciIsleri" EntityType="Self.tblOgrenciIsleri" />
+          <EntitySet Name="tblSinav" EntityType="Self.tblSinav" />
+          <EntitySet Name="tblYetki" EntityType="Self.tblYetki" />
+          <EntitySet Name="tblYetkiTur" EntityType="Self.tblYetkiTur" />
+          <AssociationSet Name="FK_tblBolum_tblFakulte" Association="Self.FK_tblBolum_tblFakulte">
+            <End Role="tblFakulte" EntitySet="tblFakulte" />
+            <End Role="tblBolum" EntitySet="tblBolum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBolumEgitmen_tblBolum" Association="Self.FK_tblBolumEgitmen_tblBolum">
+            <End Role="tblBolum" EntitySet="tblBolum" />
+            <End Role="tblBolumEgitmen" EntitySet="tblBolumEgitmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblDers_tblBolum" Association="Self.FK_tblDers_tblBolum">
+            <End Role="tblBolum" EntitySet="tblBolum" />
+            <End Role="tblDers" EntitySet="tblDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEgitmen_tblBolum" Association="Self.FK_tblEgitmen_tblBolum">
+            <End Role="tblBolum" EntitySet="tblBolum" />
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenci_tblBolum" Association="Self.FK_tblOgrenci_tblBolum">
+            <End Role="tblBolum" EntitySet="tblBolum" />
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBolumEgitmen_tblEgitmen" Association="Self.FK_tblBolumEgitmen_tblEgitmen">
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+            <End Role="tblBolumEgitmen" EntitySet="tblBolumEgitmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEgitmen_tblDers" Association="Self.FK_tblEgitmen_tblDers">
+            <End Role="tblDers" EntitySet="tblDers" />
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEgitmenDers_tblDers" Association="Self.FK_tblEgitmenDers_tblDers">
+            <End Role="tblDers" EntitySet="tblDers" />
+            <End Role="tblEgitmenDers" EntitySet="tblEgitmenDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenci_tblDers" Association="Self.FK_tblOgrenci_tblDers">
+            <End Role="tblDers" EntitySet="tblDers" />
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciDers_tblDers" Association="Self.FK_tblOgrenciDers_tblDers">
+            <End Role="tblDers" EntitySet="tblDers" />
+            <End Role="tblOgrenciDers" EntitySet="tblOgrenciDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSinav_tblEgitmen1" Association="Self.FK_tblSinav_tblEgitmen1">
+            <End Role="tblDers" EntitySet="tblDers" />
+            <End Role="tblSinav" EntitySet="tblSinav" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEgitmen_tblEgitmen" Association="Self.FK_tblEgitmen_tblEgitmen">
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+            <End Role="tblEgitmen1" EntitySet="tblEgitmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEgitmen_tblFakulte" Association="Self.FK_tblEgitmen_tblFakulte">
+            <End Role="tblFakulte" EntitySet="tblFakulte" />
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEgitmen_tblYetkiTur" Association="Self.FK_tblEgitmen_tblYetkiTur">
+            <End Role="tblYetkiTur" EntitySet="tblYetkiTur" />
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEgitmenDers_tblEgitmen" Association="Self.FK_tblEgitmenDers_tblEgitmen">
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+            <End Role="tblEgitmenDers" EntitySet="tblEgitmenDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullanici_tblEgitmen" Association="Self.FK_tblKullanici_tblEgitmen">
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenci_tblFakulte" Association="Self.FK_tblOgrenci_tblFakulte">
+            <End Role="tblFakulte" EntitySet="tblFakulte" />
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullanici_tblOgrenci" Association="Self.FK_tblKullanici_tblOgrenci">
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullanici_tblOgrenciIsleri" Association="Self.FK_tblKullanici_tblOgrenciIsleri">
+            <End Role="tblOgrenciIsleri" EntitySet="tblOgrenciIsleri" />
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblKullanici_tblYetkiTur1" Association="Self.FK_tblKullanici_tblYetkiTur1">
+            <End Role="tblYetkiTur" EntitySet="tblYetkiTur" />
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblYetki_tblKullanici" Association="Self.FK_tblYetki_tblKullanici">
+            <End Role="tblKullanici" EntitySet="tblKullanici" />
+            <End Role="tblYetki" EntitySet="tblYetki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenci_tblYetkiTur" Association="Self.FK_tblOgrenci_tblYetkiTur">
+            <End Role="tblYetkiTur" EntitySet="tblYetkiTur" />
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciDers_tblOgrenci" Association="Self.FK_tblOgrenciDers_tblOgrenci">
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+            <End Role="tblOgrenciDers" EntitySet="tblOgrenciDers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciIsleri_tblYetkiTur" Association="Self.FK_tblOgrenciIsleri_tblYetkiTur">
+            <End Role="tblYetkiTur" EntitySet="tblYetkiTur" />
+            <End Role="tblOgrenciIsleri" EntitySet="tblOgrenciIsleri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblYetki_tblYetkiTur" Association="Self.FK_tblYetki_tblYetkiTur">
+            <End Role="tblYetkiTur" EntitySet="tblYetkiTur" />
+            <End Role="tblYetki" EntitySet="tblYetki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSinav_tblEgitmen" Association="OnlinesinavdbModel.FK_tblSinav_tblEgitmen">
+            <End Role="tblEgitmen" EntitySet="tblEgitmen" />
+            <End Role="tblSinav" EntitySet="tblSinav" />
+          </AssociationSet>
+          <EntitySet Name="tblSinavSoru" EntityType="OnlinesinavdbModel.tblSinavSoru" />
+          <AssociationSet Name="FK_tblSinavSoru_tblSinav" Association="OnlinesinavdbModel.FK_tblSinavSoru_tblSinav">
+            <End Role="tblSinav" EntitySet="tblSinav" />
+            <End Role="tblSinavSoru" EntitySet="tblSinavSoru" />
+          </AssociationSet>
+          <EntitySet Name="tblSoru" EntityType="OnlinesinavdbModel.tblSoru" />
+          <AssociationSet Name="FK_tblSoru_tblDers" Association="OnlinesinavdbModel.FK_tblSoru_tblDers">
+            <End Role="tblDers" EntitySet="tblDers" />
+            <End Role="tblSoru" EntitySet="tblSoru" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSoru_tblSinav" Association="OnlinesinavdbModel.FK_tblSoru_tblSinav">
+            <End Role="tblSinav" EntitySet="tblSinav" />
+            <End Role="tblSoru" EntitySet="tblSoru" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSinavSoru_tblSoru" Association="OnlinesinavdbModel.FK_tblSinavSoru_tblSoru">
+            <End Role="tblSoru" EntitySet="tblSoru" />
+            <End Role="tblSinavSoru" EntitySet="tblSinavSoru" />
+          </AssociationSet>
+          <EntitySet Name="tblOgrenciCevap" EntityType="OnlinesinavdbModel.tblOgrenciCevap" />
+          <EntitySet Name="tblOgrenciPuan" EntityType="OnlinesinavdbModel.tblOgrenciPuan" />
+          <AssociationSet Name="FK_tblOgrenciCevap_tblOgrenci" Association="OnlinesinavdbModel.FK_tblOgrenciCevap_tblOgrenci">
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+            <End Role="tblOgrenciCevap" EntitySet="tblOgrenciCevap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciPuan_tblOgrenci" Association="OnlinesinavdbModel.FK_tblOgrenciPuan_tblOgrenci">
+            <End Role="tblOgrenci" EntitySet="tblOgrenci" />
+            <End Role="tblOgrenciPuan" EntitySet="tblOgrenciPuan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciCevap_tblSinav" Association="OnlinesinavdbModel.FK_tblOgrenciCevap_tblSinav">
+            <End Role="tblSinav" EntitySet="tblSinav" />
+            <End Role="tblOgrenciCevap" EntitySet="tblOgrenciCevap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciCevap_tblSoru" Association="OnlinesinavdbModel.FK_tblOgrenciCevap_tblSoru">
+            <End Role="tblSoru" EntitySet="tblSoru" />
+            <End Role="tblOgrenciCevap" EntitySet="tblOgrenciCevap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciPuan_tblSinav" Association="OnlinesinavdbModel.FK_tblOgrenciPuan_tblSinav">
+            <End Role="tblSinav" EntitySet="tblSinav" />
+            <End Role="tblOgrenciPuan" EntitySet="tblOgrenciPuan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOgrenciPuan_tblSoru" Association="OnlinesinavdbModel.FK_tblOgrenciPuan_tblSoru">
+            <End Role="tblSoru" EntitySet="tblSoru" />
+            <End Role="tblOgrenciPuan" EntitySet="tblOgrenciPuan" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_tblSinav_tblEgitmen">
+          <End Type="OnlinesinavdbModel.tblEgitmen" Role="tblEgitmen" Multiplicity="0..1" />
+          <End Type="OnlinesinavdbModel.tblSinav" Role="tblSinav" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEgitmen">
+              <PropertyRef Name="egitmenid" />
+            </Principal>
+            <Dependent Role="tblSinav">
+              <PropertyRef Name="egitmenid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblSinavSoru">
+          <Key>
+            <PropertyRef Name="sinavSoruid" />
+          </Key>
+          <Property Name="sinavSoruid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sinavid" Type="Int32" />
+          <Property Name="soruid" Type="Int32" />
+          <NavigationProperty Name="tblSinav" Relationship="OnlinesinavdbModel.FK_tblSinavSoru_tblSinav" FromRole="tblSinavSoru" ToRole="tblSinav" />
+          <NavigationProperty Name="tblSoru" Relationship="OnlinesinavdbModel.FK_tblSinavSoru_tblSoru" FromRole="tblSinavSoru" ToRole="tblSoru" />
+        </EntityType>
+        <Association Name="FK_tblSinavSoru_tblSinav">
+          <End Type="OnlinesinavdbModel.tblSinav" Role="tblSinav" Multiplicity="0..1" />
+          <End Type="OnlinesinavdbModel.tblSinavSoru" Role="tblSinavSoru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSinav">
+              <PropertyRef Name="sinavid" />
+            </Principal>
+            <Dependent Role="tblSinavSoru">
+              <PropertyRef Name="sinavid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblSoru">
+          <Key>
+            <PropertyRef Name="soruid" />
+          </Key>
+          <Property Name="soruid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="soru" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="dogru_cevap" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="dersid" Type="Int32" />
+          <Property Name="sinavid" Type="Int32" />
+          <NavigationProperty Name="tblDers" Relationship="OnlinesinavdbModel.FK_tblSoru_tblDers" FromRole="tblSoru" ToRole="tblDers" />
+          <NavigationProperty Name="tblSinav" Relationship="OnlinesinavdbModel.FK_tblSoru_tblSinav" FromRole="tblSoru" ToRole="tblSinav" />
+          <NavigationProperty Name="tblSinavSoru" Relationship="OnlinesinavdbModel.FK_tblSinavSoru_tblSoru" FromRole="tblSoru" ToRole="tblSinavSoru" />
+          <Property Name="soruno" Type="Int32" />
+          <Property Name="A" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="B" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="C" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="D" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="E" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblOgrenciCevap" Relationship="OnlinesinavdbModel.FK_tblOgrenciCevap_tblSoru" FromRole="tblSoru" ToRole="tblOgrenciCevap" />
+          <NavigationProperty Name="tblOgrenciPuan" Relationship="OnlinesinavdbModel.FK_tblOgrenciPuan_tblSoru" FromRole="tblSoru" ToRole="tblOgrenciPuan" />
+        </EntityType>
+        <Association Name="FK_tblSoru_tblDers">
+          <End Type="OnlinesinavdbModel.tblDers" Role="tblDers" Multiplicity="0..1" />
+          <End Type="OnlinesinavdbModel.tblSoru" Role="tblSoru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDers">
+              <PropertyRef Name="dersid" />
+            </Principal>
+            <Dependent Role="tblSoru">
+              <PropertyRef Name="dersid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSoru_tblSinav">
+          <End Type="OnlinesinavdbModel.tblSinav" Role="tblSinav" Multiplicity="0..1" />
+          <End Type="OnlinesinavdbModel.tblSoru" Role="tblSoru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSinav">
+              <PropertyRef Name="sinavid" />
+            </Principal>
+            <Dependent Role="tblSoru">
+              <PropertyRef Name="sinavid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSinavSoru_tblSoru">
+          <End Type="OnlinesinavdbModel.tblSoru" Role="tblSoru" Multiplicity="0..1" />
+          <End Type="OnlinesinavdbModel.tblSinavSoru" Role="tblSinavSoru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSoru">
+              <PropertyRef Name="soruid" />
+            </Principal>
+            <Dependent Role="tblSinavSoru">
+              <PropertyRef Name="soruid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblOgrenciCevap">
+          <Key>
+            <PropertyRef Name="cevapid" />
+          </Key>
+          <Property Name="cevapid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="soruid" Type="Int32" />
+          <Property Name="cevap" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ogrenciid" Type="Int32" />
+          <Property Name="sinavid" Type="Int32" />
+          <NavigationProperty Name="tblOgrenci" Relationship="OnlinesinavdbModel.FK_tblOgrenciCevap_tblOgrenci" FromRole="tblOgrenciCevap" ToRole="tblOgrenci" />
+          <NavigationProperty Name="tblSinav" Relationship="OnlinesinavdbModel.FK_tblOgrenciCevap_tblSinav" FromRole="tblOgrenciCevap" ToRole="tblSinav" />
+          <NavigationProperty Name="tblSoru" Relationship="OnlinesinavdbModel.FK_tblOgrenciCevap_tblSoru" FromRole="tblOgrenciCevap" ToRole="tblSoru" />
+        </EntityType>
+        <EntityType Name="tblOgrenciPuan">
+          <Key>
+            <PropertyRef Name="puanid" />
+          </Key>
+          <Property Name="puanid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="puan" Type="Int32" />
+          <Property Name="soruid" Type="Int32" />
+          <Property Name="sinavid" Type="Int32" />
+          <Property Name="ogrenciid" Type="Int32" />
+          <NavigationProperty Name="tblOgrenci" Relationship="OnlinesinavdbModel.FK_tblOgrenciPuan_tblOgrenci" FromRole="tblOgrenciPuan" ToRole="tblOgrenci" />
+          <NavigationProperty Name="tblSinav" Relationship="OnlinesinavdbModel.FK_tblOgrenciPuan_tblSinav" FromRole="tblOgrenciPuan" ToRole="tblSinav" />
+          <NavigationProperty Name="tblSoru" Relationship="OnlinesinavdbModel.FK_tblOgrenciPuan_tblSoru" FromRole="tblOgrenciPuan" ToRole="tblSoru" />
+        </EntityType>
+        <Association Name="FK_tblOgrenciCevap_tblOgrenci">
+          <End Type="OnlinesinavdbModel.tblOgrenci" Role="tblOgrenci" Multiplicity="0..1" />
+          <End Type="OnlinesinavdbModel.tblOgrenciCevap" Role="tblOgrenciCevap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOgrenci">
+              <PropertyRef Name="ogrenciid" />
+            </Principal>
+            <Dependent Role="tblOgrenciCevap">
+              <PropertyRef Name="ogrenciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciPuan_tblOgrenci">
+          <End Type="OnlinesinavdbModel.tblOgrenci" Role="tblOgrenci" Multiplicity="0..1" />
+          <End Type="OnlinesinavdbModel.tblOgrenciPuan" Role="tblOgrenciPuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOgrenci">
+              <PropertyRef Name="ogrenciid" />
+            </Principal>
+            <Dependent Role="tblOgrenciPuan">
+              <PropertyRef Name="ogrenciid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciCevap_tblSinav">
+          <End Type="OnlinesinavdbModel.tblSinav" Role="tblSinav" Multiplicity="0..1" />
+          <End Type="OnlinesinavdbModel.tblOgrenciCevap" Role="tblOgrenciCevap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSinav">
+              <PropertyRef Name="sinavid" />
+            </Principal>
+            <Dependent Role="tblOgrenciCevap">
+              <PropertyRef Name="sinavid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciCevap_tblSoru">
+          <End Type="OnlinesinavdbModel.tblSoru" Role="tblSoru" Multiplicity="0..1" />
+          <End Type="OnlinesinavdbModel.tblOgrenciCevap" Role="tblOgrenciCevap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSoru">
+              <PropertyRef Name="soruid" />
+            </Principal>
+            <Dependent Role="tblOgrenciCevap">
+              <PropertyRef Name="soruid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciPuan_tblSinav">
+          <End Type="OnlinesinavdbModel.tblSinav" Role="tblSinav" Multiplicity="0..1" />
+          <End Type="OnlinesinavdbModel.tblOgrenciPuan" Role="tblOgrenciPuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSinav">
+              <PropertyRef Name="sinavid" />
+            </Principal>
+            <Dependent Role="tblOgrenciPuan">
+              <PropertyRef Name="sinavid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOgrenciPuan_tblSoru">
+          <End Type="OnlinesinavdbModel.tblSoru" Role="tblSoru" Multiplicity="0..1" />
+          <End Type="OnlinesinavdbModel.tblOgrenciPuan" Role="tblOgrenciPuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSoru">
+              <PropertyRef Name="soruid" />
+            </Principal>
+            <Dependent Role="tblOgrenciPuan">
+              <PropertyRef Name="soruid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OnlinesinavdbModelStoreContainer" CdmEntityContainer="OnlinesinavdbEntities1">
+          <EntitySetMapping Name="tblBolum">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblBolum">
+              <MappingFragment StoreEntitySet="tblBolum">
+                <ScalarProperty Name="bolumid" ColumnName="bolumid" />
+                <ScalarProperty Name="bolumad" ColumnName="bolumad" />
+                <ScalarProperty Name="fakulteid" ColumnName="fakulteid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBolumEgitmen">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblBolumEgitmen">
+              <MappingFragment StoreEntitySet="tblBolumEgitmen">
+                <ScalarProperty Name="bolumEgitmenid" ColumnName="bolumEgitmenid" />
+                <ScalarProperty Name="bolumid" ColumnName="bolumid" />
+                <ScalarProperty Name="egitmenid" ColumnName="egitmenid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDers">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblDers">
+              <MappingFragment StoreEntitySet="tblDers">
+                <ScalarProperty Name="dersid" ColumnName="dersid" />
+                <ScalarProperty Name="dersad" ColumnName="dersad" />
+                <ScalarProperty Name="derskod" ColumnName="derskod" />
+                <ScalarProperty Name="derssaat" ColumnName="derssaat" />
+                <ScalarProperty Name="derskredi" ColumnName="derskredi" />
+                <ScalarProperty Name="dersdonem" ColumnName="dersdonem" />
+                <ScalarProperty Name="dersakts" ColumnName="dersakts" />
+                <ScalarProperty Name="bolumid" ColumnName="bolumid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEgitmen">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblEgitmen">
+              <MappingFragment StoreEntitySet="tblEgitmen">
+                <ScalarProperty Name="egitmenid" ColumnName="egitmenid" />
+                <ScalarProperty Name="egitmenad" ColumnName="egitmenad" />
+                <ScalarProperty Name="egitmensoyad" ColumnName="egitmensoyad" />
+                <ScalarProperty Name="egitmeneposta" ColumnName="egitmeneposta" />
+                <ScalarProperty Name="bolumid" ColumnName="bolumid" />
+                <ScalarProperty Name="yetkiturid" ColumnName="yetkiturid" />
+                <ScalarProperty Name="fakulteid" ColumnName="fakulteid" />
+                <ScalarProperty Name="dersid" ColumnName="dersid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEgitmenDers">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblEgitmenDers">
+              <MappingFragment StoreEntitySet="tblEgitmenDers">
+                <ScalarProperty Name="egitmenDersid" ColumnName="egitmenDersid" />
+                <ScalarProperty Name="egitmenid" ColumnName="egitmenid" />
+                <ScalarProperty Name="dersid" ColumnName="dersid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFakulte">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblFakulte">
+              <MappingFragment StoreEntitySet="tblFakulte">
+                <ScalarProperty Name="fakulteid" ColumnName="fakulteid" />
+                <ScalarProperty Name="fakultead" ColumnName="fakultead" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKullanici">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblKullanici">
+              <MappingFragment StoreEntitySet="tblKullanici">
+                <ScalarProperty Name="kullaniciid" ColumnName="kullaniciid" />
+                <ScalarProperty Name="kullaniciad" ColumnName="kullaniciad" />
+                <ScalarProperty Name="kullanicisifre" ColumnName="kullanicisifre" />
+                <ScalarProperty Name="yetkiturid" ColumnName="yetkiturid" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="egitmenid" ColumnName="egitmenid" />
+                <ScalarProperty Name="ogrenciid" ColumnName="ogrenciid" />
+                <ScalarProperty Name="ogrenciisleriid" ColumnName="ogrenciisleriid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOgrenci">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblOgrenci">
+              <MappingFragment StoreEntitySet="tblOgrenci">
+                <ScalarProperty Name="ogrenciid" ColumnName="ogrenciid" />
+                <ScalarProperty Name="ogrenciad" ColumnName="ogrenciad" />
+                <ScalarProperty Name="ogrencisoyad" ColumnName="ogrencisoyad" />
+                <ScalarProperty Name="ogrencino" ColumnName="ogrencino" />
+                <ScalarProperty Name="ogrencieposta" ColumnName="ogrencieposta" />
+                <ScalarProperty Name="bolumid" ColumnName="bolumid" />
+                <ScalarProperty Name="yetkiturid" ColumnName="yetkiturid" />
+                <ScalarProperty Name="fakulteid" ColumnName="fakulteid" />
+                <ScalarProperty Name="dersid" ColumnName="dersid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOgrenciDers">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblOgrenciDers">
+              <MappingFragment StoreEntitySet="tblOgrenciDers">
+                <ScalarProperty Name="ogrenciDersID" ColumnName="ogrenciDersID" />
+                <ScalarProperty Name="ogrenciid" ColumnName="ogrenciid" />
+                <ScalarProperty Name="dersid" ColumnName="dersid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOgrenciIsleri">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblOgrenciIsleri">
+              <MappingFragment StoreEntitySet="tblOgrenciIsleri">
+                <ScalarProperty Name="ogrenciisleriid" ColumnName="ogrenciisleriid" />
+                <ScalarProperty Name="ogrenciisleriad" ColumnName="ogrenciisleriad" />
+                <ScalarProperty Name="ogrenciislerisifre" ColumnName="ogrenciislerisifre" />
+                <ScalarProperty Name="yetkiturid" ColumnName="yetkiturid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSinav">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblSinav">
+              <MappingFragment StoreEntitySet="tblSinav">
+                <ScalarProperty Name="sinavbitis" ColumnName="sinavbitis" />
+                <ScalarProperty Name="sinavid" ColumnName="sinavid" />
+                <ScalarProperty Name="sinavad" ColumnName="sinavad" />
+                <ScalarProperty Name="sinavtarih" ColumnName="sinavtarih" />
+                <ScalarProperty Name="dersid" ColumnName="dersid" />
+                <ScalarProperty Name="egitmenid" ColumnName="egitmenid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblYetki">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblYetki">
+              <MappingFragment StoreEntitySet="tblYetki">
+                <ScalarProperty Name="yetkiid" ColumnName="yetkiid" />
+                <ScalarProperty Name="kullaniciid" ColumnName="kullaniciid" />
+                <ScalarProperty Name="yetkiturid" ColumnName="yetkiturid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblYetkiTur">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblYetkiTur">
+              <MappingFragment StoreEntitySet="tblYetkiTur">
+                <ScalarProperty Name="yetkiturid" ColumnName="yetkiturid" />
+                <ScalarProperty Name="yetkiturad" ColumnName="yetkiturad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSinavSoru">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblSinavSoru">
+              <MappingFragment StoreEntitySet="tblSinavSoru">
+                <ScalarProperty Name="soruid" ColumnName="soruid" />
+                <ScalarProperty Name="sinavid" ColumnName="sinavid" />
+                <ScalarProperty Name="sinavSoruid" ColumnName="sinavSoruid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSoru">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblSoru">
+              <MappingFragment StoreEntitySet="tblSoru">
+                <ScalarProperty Name="E" ColumnName="E" />
+                <ScalarProperty Name="D" ColumnName="D" />
+                <ScalarProperty Name="C" ColumnName="C" />
+                <ScalarProperty Name="B" ColumnName="B" />
+                <ScalarProperty Name="A" ColumnName="A" />
+                <ScalarProperty Name="soruno" ColumnName="soruno" />
+                <ScalarProperty Name="sinavid" ColumnName="sinavid" />
+                <ScalarProperty Name="dersid" ColumnName="dersid" />
+                <ScalarProperty Name="dogru_cevap" ColumnName="dogru_cevap" />
+                <ScalarProperty Name="soru" ColumnName="soru" />
+                <ScalarProperty Name="soruid" ColumnName="soruid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOgrenciCevap">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblOgrenciCevap">
+              <MappingFragment StoreEntitySet="tblOgrenciCevap">
+                <ScalarProperty Name="sinavid" ColumnName="sinavid" />
+                <ScalarProperty Name="ogrenciid" ColumnName="ogrenciid" />
+                <ScalarProperty Name="cevap" ColumnName="cevap" />
+                <ScalarProperty Name="soruid" ColumnName="soruid" />
+                <ScalarProperty Name="cevapid" ColumnName="cevapid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOgrenciPuan">
+            <EntityTypeMapping TypeName="OnlinesinavdbModel.tblOgrenciPuan">
+              <MappingFragment StoreEntitySet="tblOgrenciPuan">
+                <ScalarProperty Name="ogrenciid" ColumnName="ogrenciid" />
+                <ScalarProperty Name="sinavid" ColumnName="sinavid" />
+                <ScalarProperty Name="soruid" ColumnName="soruid" />
+                <ScalarProperty Name="puan" ColumnName="puan" />
+                <ScalarProperty Name="puanid" ColumnName="puanid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

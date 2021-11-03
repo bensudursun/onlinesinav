@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="52c771e66852444590a697d637e45d2a" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblBolum" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblBolumEgitmen" Width="1.5" PointX="8.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblDers" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblEgitmen" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblEgitmenDers" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblFakulte" Width="1.5" PointX="15.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblKullanici" Width="1.5" PointX="8.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblOgrenci" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblOgrenciDers" Width="1.5" PointX="11.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblOgrenciIsleri" Width="1.5" PointX="14.5" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblSinav" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblYetki" Width="1.5" PointX="10.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblYetkiTur" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblBolum_tblFakulte" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblBolumEgitmen_tblBolum" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblDers_tblBolum" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblEgitmen_tblBolum" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblOgrenci_tblBolum" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblBolumEgitmen_tblEgitmen" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblEgitmen_tblDers" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblEgitmenDers_tblDers" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblOgrenci_tblDers" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblOgrenciDers_tblDers" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblSinav_tblEgitmen1" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblEgitmen_tblEgitmen" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblEgitmen_tblFakulte" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblEgitmen_tblYetkiTur" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblEgitmenDers_tblEgitmen" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblKullanici_tblEgitmen" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblOgrenci_tblFakulte" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblKullanici_tblOgrenci" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblKullanici_tblOgrenciIsleri" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblKullanici_tblYetkiTur1" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblYetki_tblKullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblOgrenci_tblYetkiTur" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblOgrenciDers_tblOgrenci" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblOgrenciIsleri_tblYetkiTur" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblYetki_tblYetkiTur" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblSinav_tblEgitmen" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblSinavSoru" Width="1.5" PointX="11.75" PointY="5.75" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblSinavSoru_tblSinav" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblSoru" Width="1.5" PointX="5.25" PointY="13.375" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblSoru_tblDers" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblSoru_tblSinav" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblSinavSoru_tblSoru" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblOgrenciCevap" Width="1.5" PointX="20.5" PointY="10.625" />
+        <EntityTypeShape EntityType="OnlinesinavdbModel.tblOgrenciPuan" Width="1.5" PointX="17.25" PointY="12.5" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblOgrenciCevap_tblOgrenci" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblOgrenciPuan_tblOgrenci" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblOgrenciCevap_tblSinav" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblOgrenciCevap_tblSoru" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblOgrenciPuan_tblSinav" />
+        <AssociationConnector Association="OnlinesinavdbModel.FK_tblOgrenciPuan_tblSoru" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
