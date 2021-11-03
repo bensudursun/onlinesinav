@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlinsinavAPI", "OnlinsinavAPI\OnlinsinavAPI.csproj", "{036D68F0-E593-4982-B030-1C5210A5868D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{036D68F0-E593-4982-B030-1C5210A5868D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{036D68F0-E593-4982-B030-1C5210A5868D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{036D68F0-E593-4982-B030-1C5210A5868D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{036D68F0-E593-4982-B030-1C5210A5868D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1E62126-253D-4307-B0E3-5909DFC57903}
+	EndGlobalSection
+EndGlobal
